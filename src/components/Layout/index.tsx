@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import Menus from '../Menus';
 import Loading from '../Loading';
 import UserCard from '../UserCard';
+import { Alert } from '../';
 
 import './style.scss';
 
@@ -91,62 +92,51 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-  },
-
-  card: {
-    width: 200,
-    display: 'contents',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  avatarWrapper: {
-    position: 'relative',
-  },
-  avatar: {
-    width: '120px',
-    height: '120px',
-    marginBottom: 10,
-  },
-  progress: {
-    color: 'red',
-    position: 'absolute',
-    top: -2,
-    left: -2,
   },
 }));
 
 export default function Layout(props: any) {
+  const { alert, isLoading, setAlert } = props;
+
+  const classes = useStyles();
   const { t, i18n } = useTranslation('header');
+
+  const [open, setOpen] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
     localStorage.setItem('lng', language);
   };
 
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const handleCloseAlert = (event?: any, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlert({ ...alert, open: false });
+  };
+
   return (
     <div>
-      <Loading isLoading={props.isLoading} />
+      <Loading isLoading={isLoading} />
       <div className="root">
         <CssBaseline />
         <AppBar
@@ -177,7 +167,6 @@ export default function Layout(props: any) {
             </Typography>
 
             <UserCard
-              classes={classes}
               handleClose={handleClose}
               anchorEl={anchorEl}
               handleClick={handleClick}
@@ -211,6 +200,16 @@ export default function Layout(props: any) {
           </div>
         </main>
       </div>
+      {alert && (
+        <Alert
+          open={alert.open}
+          message={alert.message}
+          type={alert.type}
+          timeout={alert.timeout}
+          handleClose={handleCloseAlert}
+          setAlert={setAlert}
+        />
+      )}
     </div>
   );
 }

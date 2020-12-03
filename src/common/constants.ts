@@ -1,7 +1,10 @@
+// auth
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
-export const USER_EDIT = 'USER_EDIT';
+
+// user
 export const USER_GET = 'USER_GET';
+export const USER_EDIT = 'USER_EDIT';
 
 const HOME_ROUTE = ``;
 const LOGIN_ROUTE = `${HOME_ROUTE}/login`;

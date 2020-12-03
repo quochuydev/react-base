@@ -13,7 +13,7 @@ export interface IUser extends Entity {
   phone?: string;
   description?: string;
   country?: string;
-  
+  address?: string;
   roles?: TODO
 }
 export interface IUsers extends Array<IUser> {}

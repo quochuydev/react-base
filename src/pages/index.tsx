@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
-export default function Admin() {
+export default function Admin(): TODO {
   return <div>home</div>;
 }

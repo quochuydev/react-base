@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-
-import { signIn } from '../../actions/auth';
+import { Avatar, Button, CssBaseline, TextField, Link, Grid, Typography, Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,24 +24,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  signIn: any;
-}
-
-function Login(props: Props) {
+function Login(): TODO {
   const classes = useStyles();
-  let [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
-  let handleSubmit = (event: any): void => {
+  const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    let payload = { success: true, token: 'token' };
+    const payload = { success: true, token: 'token' };
     localStorage.setItem('accessToken', payload.token);
     setRedirect(true);
   };
 
   return (
     <div>
-      {redirect ? <Redirect to={'/admin'} /> : null}
+      {redirect ? <Redirect to="/admin" /> : null}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -85,19 +70,13 @@ function Login(props: Props) {
               id="password"
               autoComplete="current-password"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/reset" variant="body2">
+                  Forget password?
                 </Link>
               </Grid>
             </Grid>
@@ -108,10 +87,4 @@ function Login(props: Props) {
   );
 }
 
-function mapDispatchToProps(dispatch: any) {
-  return {
-    signIn: (action: TODO) => dispatch(signIn(action)),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

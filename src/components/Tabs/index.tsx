@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs as MuiTabs } from '@material-ui/core';
 
-function a11yProps(index: any) {
+function a11yProps(index: number) {
   return {
     id: `scrollable-force-tab-${index}`,
     'aria-controls': `scrollable-force-tabpanel-${index}`,
@@ -11,12 +11,13 @@ function a11yProps(index: any) {
 interface TabPanelProps {
   tab: string;
   render?: React.ReactNode;
+  is_show: boolean;
 }
 
-export default function Tabs(props: TODO) {
-  const { rows } = props;
-  const [value, setValue] = useState(rows[0]['value']);
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+export default function Tabs(props: TODO): TODO {
+  const { rows, selected } = props;
+  const [value, setValue] = useState(selected || rows[0]['value']);
+  const handleChange = (event: TODO, newValue: number) => {
     setValue(newValue);
   };
 
@@ -27,17 +28,21 @@ export default function Tabs(props: TODO) {
         indicatorColor="primary"
         textColor="primary"
         onChange={handleChange}
+        style={{ marginBottom: 15 }}
       >
-        {rows.map((e: TabPanelProps, i: number) => (
-          <Tab
-            key={i}
-            label={e.tab}
-            onClick={() => {
-              setValue(i);
-            }}
-            {...a11yProps(i)}
-          />
-        ))}
+        {rows.map(
+          (e: TabPanelProps, i: number) =>
+            e.is_show && (
+              <Tab
+                key={i}
+                label={e.tab}
+                onClick={() => {
+                  setValue(i);
+                }}
+                {...a11yProps(i)}
+              />
+            )
+        )}
       </MuiTabs>
       {rows.map((e: TabPanelProps, i: number) => (
         <TabPanel value={value} key={i} index={i}>
@@ -48,7 +53,7 @@ export default function Tabs(props: TODO) {
   );
 }
 
-function TabPanel(props: any) {
+function TabPanel(props: TODO) {
   const { children, value, index, ...other } = props;
 
   return (

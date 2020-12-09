@@ -1,5 +1,8 @@
 {
     "header": {
-        "title": "Vietnamese"
+        "language": "Vietnamese"
+    },
+    "menu": {
+        "user": "Người dùng"
     }
 }

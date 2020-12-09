@@ -7,6 +7,12 @@ import ImageUpload from './ImageUpload';
 import Radio from './Radio';
 import Select from './Select';
 import Table from './Table';
+import Tabs from './Tabs';
+import Effect from './Effect';
+import Menus from './Menus';
+import Label from './Label';
+import Submit from './Submit';
+import Line from './Line';
 
 export {
   Alert,
@@ -18,4 +24,10 @@ export {
   Radio,
   Select,
   Table,
+  Tabs,
+  Effect,
+  Menus,
+  Label,
+  Submit,
+  Line,
 };

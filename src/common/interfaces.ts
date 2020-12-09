@@ -1,4 +1,4 @@
-import { SIGN_IN, USER_EDIT } from './constants';
+import { SIGN_IN, USER_CREATE, USER_EDIT } from './constants';
 
 export interface Entity {
   id?: number;
@@ -14,9 +14,15 @@ export interface IUser extends Entity {
   description?: string;
   country?: string;
   address?: string;
-  roles?: TODO
+  roles?: TODO;
 }
-export interface IUsers extends Array<IUser> {}
+export type IUsers = Array<IUser>;
+
+export interface UserCreateAction {
+  type: typeof USER_CREATE;
+  payload: { user?: IUser };
+  error?: string;
+}
 
 export interface UserEditAction {
   type: typeof USER_EDIT;
@@ -42,18 +48,19 @@ export interface SignInAction {
 export interface Menu {
   key: string;
   title: string;
+  icon: TODO;
   path: string;
-  icon: any;
+  subs?: TODO;
   is_open: boolean;
 }
-export interface Menus extends Array<Menu> {}
+export type Menus = Array<Menu>;
 
 export interface Route {
   path: string;
-  component: any;
+  component: TODO;
   exact: boolean;
 }
-export interface Routes extends Array<Route> {}
+export type Routes = Array<Route>;
 
 export interface IAlert {
   open?: boolean;

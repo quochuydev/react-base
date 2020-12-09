@@ -1,7 +1,12 @@
 import { SignInAction, IUser } from './interfaces';
-import { USER_GET,USER_EDIT } from './constants';
+import { USER_GET, USER_CREATE, USER_EDIT, LOGGED_USER } from './constants';
 
-export type AuthActionTypes = SignInAction;
+interface UsingUser {
+  type: typeof LOGGED_USER;
+  payload: IUser;
+}
+
+export type AuthActionTypes = SignInAction | UsingUser;
 
 interface UserGetAction {
   type: typeof USER_GET;
@@ -9,10 +14,14 @@ interface UserGetAction {
   error?: string;
 }
 
+interface UserCreateAction {
+  type: typeof USER_CREATE;
+  payload: IUser;
+}
+
 interface UserEditAction {
   type: typeof USER_EDIT;
   payload: IUser;
-  error?: string;
 }
 
-export type UserActionTypes = UserGetAction | UserEditAction;
+export type UserActionTypes = UserGetAction | UserCreateAction | UserEditAction;

@@ -11,25 +11,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }));
-export default function Alert(props: any) {
+export default function Alert(props: TODO): TODO {
   const classes = useStyles();
-  let open = props.open || false;
-  let type = props.type || 'success';
-  let timeout = props.timeout || 1500;
-  let message = props.message || '';
+  const open = props.open || false;
+  const type = props.type || 'success';
+  const timeout = props.timeout || 1500;
+  const message = props.message || '';
   return (
     <div className={classes.root}>
-      <Snackbar
-        open={open}
-        autoHideDuration={timeout}
-        onClose={props.handleClose}
-      >
-        <MuiAlert
-          elevation={6}
-          variant="filled"
-          onClose={props.handleClose}
-          severity={type}
-        >
+      <Snackbar open={open} autoHideDuration={timeout} onClose={props.handleClose}>
+        <MuiAlert elevation={6} variant="filled" onClose={props.handleClose} severity={type}>
           {message}
         </MuiAlert>
       </Snackbar>

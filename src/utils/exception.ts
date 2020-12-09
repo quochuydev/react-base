@@ -2,7 +2,7 @@ const TYPES = {
   NONE: 0,
   NOT_IMPLEMENT: 1,
   API: 2,
-  INVALID_ARGUMENT: 3
+  INVALID_ARGUMENT: 3,
 };
 
 class Exception {

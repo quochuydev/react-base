@@ -2,16 +2,22 @@ import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 
 import { AppState } from '../store';
-import { SIGN_IN } from '../common/constants';
+import { SIGN_IN, LOGGED_USER } from '../common/constants';
 
-export const signIn = (
-  apiAction?: any
-): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
-  let payload;
-
+const signIn = (apiAction?: TODO): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
   console.log(apiAction);
-  const { username, password } = apiAction;
-  payload = { success: true, token: 'token' };
-
+  const payload = { success: true, token: 'token' };
   dispatch({ type: SIGN_IN, payload });
 };
+
+const usingUser = (data?: TODO): ThunkAction<void, AppState, null, Action<string>> => async (dispatch) => {
+  const payload = { user: { id: data.id, email: 'user@gmail.com' } };
+  dispatch({ type: LOGGED_USER, payload });
+};
+
+const ACTIONS = {
+  signIn,
+  usingUser,
+};
+
+export default ACTIONS;

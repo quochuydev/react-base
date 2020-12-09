@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Field } from 'formik';
+import Label from '../Label';
 
 const useStyles = makeStyles(() => ({
   labelRoot: {
@@ -13,19 +13,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Input({ ...props }: TODO) {
+export default function Input({ label, ...props }: TODO): TODO {
   const classes = useStyles();
   return (
-    <TextField
-      {...props}
-      InputLabelProps={{
-        classes: {
-          root: classes.labelRoot,
-        },
-        shrink: true,
-      }}
-      variant="outlined"
-      size="small"
-    />
+    <div>
+      {label && <Label text={label} />}
+      <TextField
+        {...props}
+        InputLabelProps={{
+          classes: {
+            root: classes.labelRoot,
+          },
+          shrink: true,
+        }}
+        variant="outlined"
+        size="small"
+      />
+    </div>
   );
 }

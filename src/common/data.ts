@@ -3,13 +3,13 @@ export const initUserState = {
     first_name: '',
     last_name: '',
     gender: 1,
-    birthday: new Date(),
+    birthday: new Date('1998-12-05T01:00:00.000Z'),
     email: '',
     description: '',
     roles: ['user'],
     country: 'us',
     phone: '',
-    address: ''
+    address: '',
   },
   users: [],
 };
@@ -50,3 +50,9 @@ export const countries = [
     name: 'Vietnam',
   },
 ];
+
+import testPhoto from '../assets/images/P-8.jpg';
+import logoPhoto from '../assets/images/InApps_Technology_logo.png';
+
+export const photo = testPhoto;
+export const logo = logoPhoto;

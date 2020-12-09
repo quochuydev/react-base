@@ -1,24 +1,19 @@
 import React from 'react';
 import { FormControl, Avatar, Button } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import './style.scss';
 
-export default function ImageUpload(props: TODO) {
+export default function ImageUpload(props: TODO): TODO {
   const { image, setImage } = props;
   return (
     <FormControl className="form">
-      <Avatar
-        variant="rounded"
-        alt="dog"
-        src={image}
-        style={{ width: 220, height: 'auto' }}
-      />
       <input
         accept="image/*"
         style={{ display: 'none' }}
         id="contained-button-file"
         multiple
         type="file"
-        onChange={(event: any) => {
+        onChange={(event: TODO) => {
           try {
             const file = event.target.files[0];
             console.log(file);
@@ -33,15 +28,14 @@ export default function ImageUpload(props: TODO) {
         }}
       />
       <label htmlFor="contained-button-file">
-        <Button
-          variant="contained"
-          component="span"
-          color="default"
-          startIcon={<CloudUploadIcon />}
-        >
+        <Button size="small" variant="contained" component="span" color="default" startIcon={<CloudUploadIcon />}>
+          Choose image
+        </Button>
+        <Button size="small" variant="contained" color="default">
           Upload
         </Button>
       </label>
+      {image && <Avatar variant="rounded" src={image} className="avatar" />}
     </FormControl>
   );
 }

@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   IconButton,
@@ -10,100 +12,39 @@ import {
   CssBaseline,
   Grid,
   Paper,
+  Avatar,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { useTranslation } from 'react-i18next';
+import { Menu as MenuIcon, ChevronLeft as ChevronLeftIcon } from '@material-ui/icons';
 
-import Menus from '../Menus';
-import Loading from '../Loading';
-import UserCard from '../UserCard';
-import { Alert } from '../';
-
+import { Effect, Menus } from '../';
+import UserCard from './UserCard';
+import { logo } from '../../common/data';
+import us from '../../assets/images/us.png';
+import vn from '../../assets/images/vn.png';
+import theme from './theme';
 import './style.scss';
 
-const drawerWidth = 240;
+const useStyles = makeStyles(theme);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: {
-    paddingRight: 24,
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
-  title: {
-    flexGrow: 1,
-  },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-  },
-  container: {
-    padding: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    overflow: 'auto',
-    flexDirection: 'column',
-  },
-}));
-
-export default function Layout(props: any) {
-  const { alert, isLoading, setAlert } = props;
+function Layout(props: TODO): TODO {
+  const { alert, isLoading, setAlert, user } = props;
+  const MENU_OPEN = 'open';
+  const MENU_CLOSE = 'close';
+  const FLAGS = [
+    { key: 'en', value: 'en', avatar: us },
+    { key: 'vi', value: 'vi', avatar: vn },
+  ];
 
   const classes = useStyles();
-  const { t, i18n } = useTranslation('header');
+  const { i18n } = useTranslation('header');
+  const lng = localStorage.getItem('lng') || 'en';
 
-  const [open, setOpen] = React.useState(true);
+  const openMenu = localStorage.getItem('openMenu') || MENU_OPEN;
+  const isOpenMenu = openMenu == MENU_OPEN;
+
+  const [open, setOpen] = React.useState(isOpenMenu);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const changeLanguage = (language: string) => {
@@ -112,10 +53,12 @@ export default function Layout(props: any) {
   };
 
   const handleDrawerOpen = () => {
+    localStorage.setItem('openMenu', MENU_OPEN);
     setOpen(true);
   };
 
   const handleDrawerClose = () => {
+    localStorage.setItem('openMenu', MENU_CLOSE);
     setOpen(false);
   };
 
@@ -127,52 +70,36 @@ export default function Layout(props: any) {
     setAnchorEl(null);
   };
 
-  const handleCloseAlert = (event?: any, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlert({ ...alert, open: false });
-  };
-
   return (
-    <div>
-      <Loading isLoading={isLoading} />
+    <>
       <div className="root">
         <CssBaseline />
-        <AppBar
-          position="absolute"
-          className={clsx(classes.appBar, open && classes.appBarShift)}
-        >
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
-              className={clsx(
-                classes.menuButton,
-                open && classes.menuButtonHidden
-              )}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.title}
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}></Typography>
+            <UserCard user={user} handleClose={handleClose} anchorEl={anchorEl} handleClick={handleClick} />
+            <Select
+              value={lng}
+              onChange={(e: TODO) => {
+                changeLanguage(e.target.value);
+              }}
+              className="menu-flags"
             >
-              {t('title')}
-            </Typography>
-
-            <UserCard
-              handleClose={handleClose}
-              anchorEl={anchorEl}
-              handleClick={handleClick}
-            />
-            <button onClick={() => changeLanguage('en')}>EN</button>
-            <button onClick={() => changeLanguage('vi')}>VI</button>
+              {FLAGS.map((e: TODO) => (
+                <MenuItem key={e.key} value={e.value}>
+                  <Avatar src={e.avatar} variant="square" className={classes.small} />
+                </MenuItem>
+              ))}
+            </Select>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -183,7 +110,8 @@ export default function Layout(props: any) {
           open={open}
         >
           <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
+            <Avatar src={logo} variant="square" style={{ width: 180 }} />
+            <IconButton onClick={handleDrawerClose} style={{ float: 'right' }}>
               <ChevronLeftIcon />
             </IconButton>
           </div>
@@ -200,16 +128,17 @@ export default function Layout(props: any) {
           </div>
         </main>
       </div>
-      {alert && (
-        <Alert
-          open={alert.open}
-          message={alert.message}
-          type={alert.type}
-          timeout={alert.timeout}
-          handleClose={handleCloseAlert}
-          setAlert={setAlert}
-        />
-      )}
-    </div>
+      <Effect isLoading={isLoading} setAlert={setAlert} alert={alert} />
+    </>
   );
 }
+
+const mapStateToProps = (state: TODO) => ({
+  user: state.auth.user,
+});
+
+function mapDispatchToProps() {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

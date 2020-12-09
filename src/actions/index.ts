@@ -1,6 +1,4 @@
-import './auth';
-import userActions from './user';
+import AuthActions from './auth';
+import UserActions from './user';
 
-export {
-    userActions
-}
+export { AuthActions, UserActions };

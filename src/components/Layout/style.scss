@@ -1,3 +1,45 @@
 .root {
   display: flex;
 }
+
+.menu-flags::before {
+  border-bottom: none !important;
+}
+
+.menu-flags {
+  margin-left: 10px;
+}
+
+.progress {
+  color: red;
+  position: absolute;
+  top: -2;
+  left: -2;
+}
+
+.card {
+  width: 200;
+  display: contents;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  position: relative;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.menu-item {
+  min-width: 180px;
+}
+
+.user-format {
+  color: white;
+  text-transform: none;
+}

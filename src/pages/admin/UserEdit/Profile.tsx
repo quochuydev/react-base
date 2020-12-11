@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
 import { Grid } from '@material-ui/core';
 import { Cancel as CancelIcon, VerifiedUser as VerifiedUserIcon } from '@material-ui/icons';
@@ -19,6 +20,8 @@ interface Props {
 }
 
 function Profile({ user, userActions }: Props): TODO {
+  const { t } = useTranslation('basic');
+
   const { id } = useParams<ParamTypes>();
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState<IAlert>({});
@@ -56,11 +59,11 @@ function Profile({ user, userActions }: Props): TODO {
         {({ values, handleChange, handleSubmit, setFieldValue }) => (
           <Form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
-              <Grid item sm={2}>
+              <Grid item sm={3}>
                 <ProfileImages />
-                {/* <ImageUpload image={image} setImage={setImage} /> */}
+                {/* <ImageUpload /> */}
               </Grid>
-              <Grid item sm={10}>
+              <Grid item sm={9}>
                 <Grid container spacing={2}>
                   <Grid item sm={12}>
                     <Line>
@@ -75,7 +78,7 @@ function Profile({ user, userActions }: Props): TODO {
                       onChange={handleChange}
                       value={values.first_name}
                       name="first_name"
-                      label="first_name"
+                      label={t('first_name')}
                       style={{ width: '60%' }}
                     />
                   </Grid>
@@ -85,7 +88,7 @@ function Profile({ user, userActions }: Props): TODO {
                       onChange={handleChange}
                       value={values.last_name}
                       name="last_name"
-                      label="last_name"
+                      label={t('last_name')}
                       style={{ width: '60%' }}
                     />
                   </Grid>
@@ -95,7 +98,7 @@ function Profile({ user, userActions }: Props): TODO {
                       onChange={handleChange}
                       value={values.email}
                       name="email"
-                      label="email"
+                      label={t('email')}
                       style={{ width: '60%' }}
                     />
                   </Grid>
@@ -105,13 +108,13 @@ function Profile({ user, userActions }: Props): TODO {
                       onChange={handleChange}
                       value={values.phone}
                       name="phone"
-                      label="phone"
+                      label={t('phone')}
                       style={{ width: '60%' }}
                     />
                   </Grid>
                   <Grid item sm={6}>
                     <DatePicker
-                      label={'birthday'}
+                      label={t('birthday')}
                       disableToolbar
                       variant="inline"
                       format="dd/MM/yyyy"
@@ -122,7 +125,7 @@ function Profile({ user, userActions }: Props): TODO {
                   </Grid>
                   <Grid item sm={6}>
                     <Radio
-                      label="Gender"
+                      label={t('gender')}
                       name="gender"
                       values={genders}
                       value={values.gender}
@@ -139,13 +142,13 @@ function Profile({ user, userActions }: Props): TODO {
                       values={roles}
                       valueKey="code"
                       name="roles"
-                      label="roles"
+                      label={t('role')}
                     />
                   </Grid>
                   <Grid item sm={12}>
                     <Input
                       id="address"
-                      label="address"
+                      label={t('address')}
                       value={values.address}
                       style={{ width: '50%' }}
                       type="text"
@@ -157,7 +160,7 @@ function Profile({ user, userActions }: Props): TODO {
                       multiline
                       rows={5}
                       type="text"
-                      label="description"
+                      label={t('description')}
                       id="description"
                       fullWidth={true}
                       style={{ width: '50%' }}
@@ -167,9 +170,6 @@ function Profile({ user, userActions }: Props): TODO {
                     />
                   </Grid>
                   <Grid item sm={12}>
-                    {/* <Button type="submit" variant="outlined" color="secondary" disabled={isLoading}>
-                      Save
-                    </Button> */}
                     <Submit disabled={isLoading}>Save</Submit>
                   </Grid>
                 </Grid>

@@ -1,15 +1,37 @@
+import testPhoto from '../assets/images/P-8.jpg';
+import logoPhoto from '../assets/images/InApps_Technology_logo.png';
+import us from '../assets/images/us.png';
+import vn from '../assets/images/vn.png';
+
+export const photo = testPhoto;
+export const logo = logoPhoto;
+
+export const FLAGS = [
+  { key: 'en', value: 'en', image: us },
+  { key: 'vi', value: 'vi', image: vn },
+];
+
 export const initUserState = {
   user: {
     first_name: '',
     last_name: '',
     gender: 1,
-    birthday: new Date('1998-12-05T01:00:00.000Z'),
+    birthday: null,
     email: '',
     description: '',
-    roles: ['user'],
-    country: 'us',
+    roles: [],
+    country: '',
     phone: '',
     address: '',
+  },
+  user_staff: {
+    first_name: '',
+    last_name: '',
+    email: '',
+    roles: [],
+    phone: '',
+    password: '',
+    confirmPassword: '',
   },
   users: [],
 };
@@ -50,9 +72,3 @@ export const countries = [
     name: 'Vietnam',
   },
 ];
-
-import testPhoto from '../assets/images/P-8.jpg';
-import logoPhoto from '../assets/images/InApps_Technology_logo.png';
-
-export const photo = testPhoto;
-export const logo = logoPhoto;

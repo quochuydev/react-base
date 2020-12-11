@@ -11,17 +11,17 @@ export default function Setting(): TODO {
 
   const columns: TODO[] = [
     {
-      id: 'holder_name',
-      label: 'Holder name',
-      minWidth: 170,
-    },
-    {
       id: 'card_number',
       label: 'Card number',
       minWidth: 170,
       render: function CardColumn(value: TODO) {
         return <p>{value.card_number ? value.card_number.replace(/(.{4})/g, '$1 ') : null}</p>;
       },
+    },
+    {
+      id: 'holder_name',
+      label: 'Holder name',
+      minWidth: 170,
     },
     {
       id: 'expired',
@@ -49,7 +49,7 @@ export default function Setting(): TODO {
 
   return (
     <>
-      <Table columns={columns} rows={rows} />
+      <Table columns={columns} rows={rows} hideFooter={true} />
     </>
   );
 }

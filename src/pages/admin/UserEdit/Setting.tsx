@@ -63,7 +63,7 @@ function Setting({ user }: TODO) {
                   value={values.showDistanceIn}
                   valueKey="code"
                   name="showDistanceIn"
-                  label="show distance in"
+                  label="Show distance in"
                 />
               </Grid>
               <Grid item sm={3}>

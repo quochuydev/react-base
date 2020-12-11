@@ -1,6 +1,6 @@
 export default class Fetch {
   private baseURL: string;
-  private config: RequestInit;
+  private config: TODO;
   private handle: TODO;
 
   constructor(baseURL: string, config: RequestInit, handle: TODO) {
@@ -21,6 +21,9 @@ export default class Fetch {
 
   private buildRequest<T>(url: string, method: string, body?: BodyInit): Promise<T> {
     return new Promise((resolve, reject) => {
+      for (const before of this.handle.befores) {
+        before(this.config);
+      }
       const {
         credentials,
         headers,
@@ -34,6 +37,7 @@ export default class Fetch {
         signal,
         window,
       } = this.config;
+
       fetch(this.buildURL(url), {
         method,
         credentials,

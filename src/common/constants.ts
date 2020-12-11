@@ -4,6 +4,7 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const LOGGED_USER = 'LOGGED_USER';
 
 // user
+export const USER_LIST = 'USER_LIST';
 export const USER_GET = 'USER_GET';
 export const USER_CREATE = 'USER_CREATE';
 export const USER_EDIT = 'USER_EDIT';
@@ -23,6 +24,7 @@ const USER_CREATE_ROUTE = `${ADMIN_ROUTE}/users_new`;
 const USER_EDIT_ROUTE = `${ADMIN_ROUTE}/users/:id`;
 const TAG_ROUTE = `${ADMIN_ROUTE}/tags`;
 const REPORT_ROUTE = `${ADMIN_ROUTE}/reports`;
+const AUCTION_ROUTE = `${ADMIN_ROUTE}/auctions`;
 
 export const PATHS = {
   // base
@@ -39,4 +41,5 @@ export const PATHS = {
   USER_EDIT_ROUTE,
   TAG_ROUTE,
   REPORT_ROUTE,
+  AUCTION_ROUTE,
 };

@@ -2,32 +2,15 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, CssBaseline, TextField, Link, Grid, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, CssBaseline, TextField, Typography, Container } from '@material-ui/core';
+import theme from './theme';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+const useStyles = makeStyles(theme);
 
-function Login(): TODO {
+function ResetPassword(): React.ReactNode {
   const classes = useStyles();
   const [redirect, setRedirect] = useState(false);
-  const [data, setData] = useState({ email: '', password: '' });
+  const [data, setData] = useState({ email: '' });
 
   function handleChange(e: TODO) {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -35,9 +18,7 @@ function Login(): TODO {
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    const payload = { success: true, token: 'token' };
-    localStorage.setItem('accessToken', payload.token);
-    setRedirect(true);
+    console.log(data);
   };
 
   return (
@@ -50,7 +31,7 @@ function Login(): TODO {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Reset password
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
@@ -63,32 +44,11 @@ function Login(): TODO {
               name="email"
               autoComplete="email"
               autoFocus
-              value={data.email}
-              onChange={handleChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={data.password}
               onChange={handleChange}
             />
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-              Sign In
+              Submit
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/reset" variant="body2">
-                  Forget password?
-                </Link>
-              </Grid>
-            </Grid>
           </form>
         </div>
       </Container>
@@ -96,4 +56,4 @@ function Login(): TODO {
   );
 }
 
-export default Login;
+export default ResetPassword;

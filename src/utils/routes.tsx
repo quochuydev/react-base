@@ -1,15 +1,16 @@
 import React from 'react';
-import People from '@material-ui/icons/People';
+import { People } from '@material-ui/icons';
 
 import Login from '../pages/login';
-import ResetPassword from '../pages/resetPassword';
-import NewPassword from '../pages/newPassword';
+import ResetPassword from '../pages/ResetPassword';
+import NewPassword from '../pages/NewPassword';
 import Permission from '../pages/Permission';
 import Dashboard from '../pages/admin/Dashboard';
 import User from '../pages/admin/User';
 import UserCreate from '../pages/admin/UserCreate';
 import UserEdit from '../pages/admin/UserEdit';
 import Tag from '../pages/admin/Tag';
+import Auction from '../pages/admin/Auction';
 
 import { PATHS } from '../common/constants';
 import { Routes, Menus } from '../common/interfaces';
@@ -25,6 +26,7 @@ const {
   USER_EDIT_ROUTE,
   TAG_ROUTE,
   REPORT_ROUTE,
+  AUCTION_ROUTE,
 } = PATHS;
 
 const ROUTE_LIST: Routes = [
@@ -78,6 +80,11 @@ const ROUTE_LIST: Routes = [
     component: Tag,
     exact: true,
   },
+  {
+    path: AUCTION_ROUTE,
+    component: Auction,
+    exact: true,
+  },
 ];
 
 const MENU_DATA: Menus = [
@@ -117,6 +124,13 @@ const MENU_DATA: Menus = [
     path: REPORT_ROUTE,
     icon: <People />,
     is_open: false,
+  },
+  {
+    key: 'auction',
+    title: 'Auction',
+    path: AUCTION_ROUTE,
+    icon: <People />,
+    is_open: true,
   },
 ];
 

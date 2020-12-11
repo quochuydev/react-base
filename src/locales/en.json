@@ -4,5 +4,17 @@
   },
   "menu": {
     "user": "User"
+  },
+  "basic": {
+    "first_name": "First name",
+    "last_name": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "birthday": "Birthday",
+    "role": "Role",
+    "gender": "Gender",
+    "description": "Description",
+    "address": "Address"
   }
 }

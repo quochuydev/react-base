@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   IconButton,
@@ -10,32 +11,30 @@ import {
   AppBar,
   Drawer,
   CssBaseline,
-  Grid,
   Paper,
   Avatar,
   Select,
   MenuItem,
 } from '@material-ui/core';
-import { Menu as MenuIcon, ChevronLeft as ChevronLeftIcon } from '@material-ui/icons';
+import {
+  Home as HomeIcon,
+  ChevronRight as ChevronRightIcon,
+  Menu as MenuIcon,
+  ChevronLeft as ChevronLeftIcon,
+} from '@material-ui/icons';
 
-import { Effect, Menus } from '../';
+import { Effect, Menus, Line } from '../';
 import UserCard from './UserCard';
-import { logo } from '../../common/data';
-import us from '../../assets/images/us.png';
-import vn from '../../assets/images/vn.png';
+import { logo, FLAGS } from '../../common/data';
 import theme from './theme';
 import './style.scss';
 
 const useStyles = makeStyles(theme);
 
 function Layout(props: TODO): TODO {
-  const { alert, isLoading, setAlert, user } = props;
+  const { alert, isLoading, setAlert, user, headers } = props;
   const MENU_OPEN = 'open';
   const MENU_CLOSE = 'close';
-  const FLAGS = [
-    { key: 'en', value: 'en', avatar: us },
-    { key: 'vi', value: 'vi', avatar: vn },
-  ];
 
   const classes = useStyles();
   const { i18n } = useTranslation('header');
@@ -94,9 +93,9 @@ function Layout(props: TODO): TODO {
               }}
               className="menu-flags"
             >
-              {FLAGS.map((e: TODO) => (
+              {FLAGS.map((e: { key: string; value: string; image: string }) => (
                 <MenuItem key={e.key} value={e.value}>
-                  <Avatar src={e.avatar} variant="square" className={classes.small} />
+                  <Avatar src={e.image} variant="square" className={classes.small} />
                 </MenuItem>
               ))}
             </Select>
@@ -120,16 +119,31 @@ function Layout(props: TODO): TODO {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <div className={classes.container}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>{props.children}</Paper>
-              </Grid>
-            </Grid>
+            {headers && headerPage(headers)}
+            <Paper className={classes.paper}>{props.children}</Paper>
           </div>
         </main>
       </div>
       <Effect isLoading={isLoading} setAlert={setAlert} alert={alert} />
     </>
+  );
+}
+
+function headerPage(headers: TODO = {}) {
+  return (
+    <Line
+      style={{
+        marginTop: 0,
+        marginBottom: 10,
+      }}
+    >
+      <HomeIcon style={{ fill: '#1976d2' }} />
+      {headers.map((e: { path: string; name: string }, i: number) => (
+        <div key={i} style={{ display: 'contents' }}>
+          <ChevronRightIcon /> <Link to={e.path || '#'}>{e.name}</Link>
+        </div>
+      ))}
+    </Line>
   );
 }
 

@@ -63,6 +63,7 @@ const themeLayout: TODO = (theme: TODO) =>
     content: {
       flexGrow: 1,
       height: '100vh',
+      width: '100%',
     },
     container: {
       padding: theme.spacing(2),

@@ -5,10 +5,13 @@ import '../style.scss';
 import Setting from './Setting';
 import Profile from './Profile';
 import PaymentSetting from './PaymentSetting';
+import { PATHS } from '../../../common/constants';
+
+const { USER_ROUTE } = PATHS;
 
 export default function UserEdit(): TODO {
   return (
-    <Layout>
+    <Layout headers={[{ name: 'User', path: USER_ROUTE }, { name: 'Edit user' }]}>
       <Tabs
         rows={[
           { value: 0, is_show: true, tab: 'Profile', render: <Profile /> },

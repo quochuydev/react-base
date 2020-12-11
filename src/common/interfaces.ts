@@ -1,18 +1,18 @@
 import { SIGN_IN, USER_CREATE, USER_EDIT } from './constants';
 
 export interface Entity {
-  id?: number;
+  id?: string;
 }
 
 export interface IUser extends Entity {
   first_name?: string;
   last_name?: string;
   gender?: number;
-  birthday?: Date;
-  email?: string;
+  birthday?: Date | null;
+  email?: string | null;
   phone?: string;
   description?: string;
-  country?: string;
+  country?: string | null;
   address?: string;
   roles?: TODO;
 }

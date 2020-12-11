@@ -5,7 +5,7 @@ export interface Data {
 }
 
 export interface Column {
-  id: 'id' | 'name' | 'date';
+  id: 'name' | 'email' | 'date';
   label: string;
   minWidth?: number;
   align?: 'right';

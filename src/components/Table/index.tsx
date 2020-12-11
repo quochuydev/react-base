@@ -19,11 +19,13 @@ const useStyles = makeStyles({
 });
 
 export default function TableComponent(props: TODO): TODO {
-  const { columns, rows, count } = props;
+  const { columns, rows, count, hideFooter } = props;
 
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const initPage = props.page || 0;
+  const initLimit = props.limit || 10;
+  const [page, setPage] = React.useState(initPage);
+  const [rowsPerPage, setRowsPerPage] = React.useState(initLimit);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -67,15 +69,17 @@ export default function TableComponent(props: TODO): TODO {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 20, 50]}
-        component="div"
-        count={count || rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+      {!hideFooter && (
+        <TablePagination
+          rowsPerPageOptions={[10, 20, 50]}
+          component="div"
+          count={count || rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      )}
     </Paper>
   );
 }

@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/react-base/static/css/main.09fddd76.chunk.css",
-    "main.js": "/react-base/static/js/main.e95d58c5.chunk.js",
-    "main.js.map": "/react-base/static/js/main.e95d58c5.chunk.js.map",
-    "runtime-main.js": "/react-base/static/js/runtime-main.e6a99bb9.js",
-    "runtime-main.js.map": "/react-base/static/js/runtime-main.e6a99bb9.js.map",
-    "static/js/2.368ee45f.chunk.js": "/react-base/static/js/2.368ee45f.chunk.js",
-    "static/js/2.368ee45f.chunk.js.map": "/react-base/static/js/2.368ee45f.chunk.js.map",
-    "static/js/3.e075369e.chunk.js": "/react-base/static/js/3.e075369e.chunk.js",
-    "static/js/3.e075369e.chunk.js.map": "/react-base/static/js/3.e075369e.chunk.js.map",
-    "index.html": "/react-base/index.html",
-    "static/css/main.09fddd76.chunk.css.map": "/react-base/static/css/main.09fddd76.chunk.css.map",
-    "static/js/2.368ee45f.chunk.js.LICENSE.txt": "/react-base/static/js/2.368ee45f.chunk.js.LICENSE.txt",
-    "static/media/InApps_Technology_logo.5b61012b.png": "/react-base/static/media/InApps_Technology_logo.5b61012b.png",
-    "static/media/P-8.0426e82b.jpg": "/react-base/static/media/P-8.0426e82b.jpg"
+    "main.css": "/static/css/main.1f6dd7da.chunk.css",
+    "main.js": "/static/js/main.90f871b3.chunk.js",
+    "main.js.map": "/static/js/main.90f871b3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.32d27ac8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.32d27ac8.js.map",
+    "static/js/2.0df5c4e9.chunk.js": "/static/js/2.0df5c4e9.chunk.js",
+    "static/js/2.0df5c4e9.chunk.js.map": "/static/js/2.0df5c4e9.chunk.js.map",
+    "static/js/3.a0e4cb7d.chunk.js": "/static/js/3.a0e4cb7d.chunk.js",
+    "static/js/3.a0e4cb7d.chunk.js.map": "/static/js/3.a0e4cb7d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.1f6dd7da.chunk.css.map": "/static/css/main.1f6dd7da.chunk.css.map",
+    "static/js/2.0df5c4e9.chunk.js.LICENSE.txt": "/static/js/2.0df5c4e9.chunk.js.LICENSE.txt",
+    "static/media/InApps_Technology_logo.5b61012b.png": "/static/media/InApps_Technology_logo.5b61012b.png",
+    "static/media/P-8.0426e82b.jpg": "/static/media/P-8.0426e82b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e6a99bb9.js",
-    "static/js/2.368ee45f.chunk.js",
-    "static/css/main.09fddd76.chunk.css",
-    "static/js/main.e95d58c5.chunk.js"
+    "static/js/runtime-main.32d27ac8.js",
+    "static/js/2.0df5c4e9.chunk.js",
+    "static/css/main.1f6dd7da.chunk.css",
+    "static/js/main.90f871b3.chunk.js"
   ]
 }
